@@ -47,6 +47,10 @@ h1{
     font-weight: 600;
 }
 
+.text-parameter{
+    text-align: center;
+}
+
 @media (max-width: 600px) {
     .container{
         flex-direction: column;

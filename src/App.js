@@ -81,6 +81,17 @@ function App() {
     );
   };
   useEffect(() => {
+    fetch("https://api.thingspeak.com/channels/1927290/feeds.json?results=1")
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        setData(result.feeds);
+        console.log(result.feeds);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     fetchData();
   }, []);
 
