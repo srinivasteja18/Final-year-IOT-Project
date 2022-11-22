@@ -50,7 +50,7 @@ function App() {
       user_name: "Srinivas Teja",
       user_email: "srinivasmoparthi17@gmail.com",
       user_message:
-        `LPG Gas concentration level is exceeding ${threshold}ppm at ` +
+        `${subject} concentration level is exceeding ${threshold}ppm at ` +
         date.toString(),
     };
     setPrevDate(date);
@@ -111,7 +111,7 @@ function App() {
             <></>
           )}
           {data.length &&
-            (data[0].field1 > 1500 ? (
+            (data[0].field1 > 700 ? (
               <p className="text-value"> Status: Bad</p>
             ) : (
               <p className="text-value">Status: Good</p>
@@ -147,10 +147,13 @@ function App() {
           )}
         </div>
       </div>
+
+      {/* Emails section */}
+
       <div>
-        {data.length && data[0].field1 > 1500 && (
+        {data.length && data[0].field1 > 700 && (
           <div>
-            {handleEmails("CO Gas", 1500)}
+            {handleEmails("CO Gas", 700)}
             {displayMessage("CO Gas")}
           </div>
         )}
@@ -160,7 +163,7 @@ function App() {
             {displayMessage("TDS")}
           </div>
         )}
-        {data.length && data[0].field3 > 1500 && (
+        {data.length && data[0].field3 > 1000 && (
           <div>
             {handleEmails("LPG Gas", 1500)}
             {displayMessage("LPG Gas")}
