@@ -22,22 +22,22 @@ function App() {
     }, 15000);
   };
 
-  const handleStatus = () => {
-    var value = data && data[0].field2;
-    value = parseInt(value);
-    // console.log(value);
-    if (value < 50) {
-      return "Not Good For Drinking";
-    } else if (value > 50 && value < 150) {
-      return "Excellent";
-    } else if (value > 150 && value < 300) {
-      return "Good";
-    } else if (value > 300 && value < 450) {
-      return "Fair";
-    } else {
-      return "Bad";
-    }
-  };
+  // const handleStatus = () => {
+  //   var value = data && data[0].field2;
+  //   value = parseInt(value);
+  //   // console.log(value);
+  //   if (value < 50) {
+  //     return "Not Good For Drinking";
+  //   } else if (value > 50 && value < 150) {
+  //     return "Excellent";
+  //   } else if (value > 150 && value < 300) {
+  //     return "Good";
+  //   } else if (value > 300 && value < 450) {
+  //     return "Fair";
+  //   } else {
+  //     return "Bad";
+  //   }
+  // };
 
   const handleEmails = (subject, threshold) => {
     const date = new Date();
@@ -110,15 +110,22 @@ function App() {
           ) : (
             <></>
           )}
+          <p className="text-value-good">Acceptable Range: less than 30 ppm</p>
+          <p className="text-value-bad">Threshold value : 50 ppm</p>
           {data.length &&
-            (data[0].field1 > 700 ? (
-              <p className="text-value"> Status: Bad</p>
+            (data[0].field1 > 30 ? (
+              <p className="text-value">
+                {" "}
+                Status: <span className="text-status-bad">Bad</span>
+              </p>
             ) : (
-              <p className="text-value">Status: Good</p>
+              <p className="text-value">
+                Status: <span className="text-status-good">Good</span>
+              </p>
             ))}
         </div>
         <div className="card-div">
-          <h2 className="text-parameter">TDS Concentration </h2>
+          <h2 className="text-parameter">H2 Concentration </h2>
           {data.length ? (
             <p className="text-value">
               {" "}
@@ -127,9 +134,19 @@ function App() {
           ) : (
             <></>
           )}
-          {data.length && (
-            <p className="text-value"> {`Status: ${handleStatus()}`}</p>
-          )}
+          <p className="text-value-good">Acceptable Range: less than 10 ppm</p>
+          <p className="text-value-bad">Threshold value : 15 ppm</p>
+          {data.length &&
+            (data[0].field2 > 10 ? (
+              <p className="text-value">
+                {" "}
+                Status: <span className="text-status-bad">Bad</span>
+              </p>
+            ) : (
+              <p className="text-value">
+                Status: <span className="text-status-good">Good</span>
+              </p>
+            ))}
         </div>
 
         <div className="card-div">
@@ -142,31 +159,72 @@ function App() {
           ) : (
             <></>
           )}
-          {data.length && (
-            <p className="text-value"> {`Status: ${handleStatus()}`}</p>
+          <p className="text-value-good">Acceptable Range: less than 500 ppm</p>
+          <p className="text-value-bad">Threshold value : 700 ppm</p>
+          {data.length &&
+            (data[0].field3 > 500 ? (
+              <p className="text-value">
+                {" "}
+                Status: <span className="text-status-bad">Bad</span>
+              </p>
+            ) : (
+              <p className="text-value">
+                Status: <span className="text-status-good">Good</span>
+              </p>
+            ))}
+        </div>
+
+        <div className="card-div">
+          <h2 className="text-parameter">TDS Concentration </h2>
+          {data.length ? (
+            <p className="text-value">
+              {" "}
+              {`Measured Value: ${data[0].field4} ppm`}
+            </p>
+          ) : (
+            <></>
           )}
+          <p className="text-value-good">Acceptable Range: less than 300 ppm</p>
+          <p className="text-value-bad">Threshold value : 600 ppm</p>
+          {data.length &&
+            (data[0].field4 > 300 ? (
+              <p className="text-value">
+                {" "}
+                Status: <span className="text-status-bad">Bad</span>
+              </p>
+            ) : (
+              <p className="text-value">
+                Status: <span className="text-status-good">Good</span>
+              </p>
+            ))}
         </div>
       </div>
 
       {/* Emails section */}
 
       <div>
-        {data.length && data[0].field1 > 700 && (
+        {data.length && data[0].field1 > 50 && (
           <div>
-            {handleEmails("CO Gas", 700)}
+            {handleEmails("CO Gas", 50)}
             {displayMessage("CO Gas")}
           </div>
         )}
-        {data.length && data[0].field2 > 700 && (
+        {data.length && data[0].field2 > 15 && (
           <div>
-            {handleEmails("TDS", 700)}
-            {displayMessage("TDS")}
+            {handleEmails("H2", 15)}
+            {displayMessage("H2")}
           </div>
         )}
-        {data.length && data[0].field3 > 1000 && (
+        {data.length && data[0].field3 > 700 && (
           <div>
-            {handleEmails("LPG Gas", 1500)}
+            {handleEmails("LPG Gas", 700)}
             {displayMessage("LPG Gas")}
+          </div>
+        )}
+        {data.length && data[0].field4 > 600 && (
+          <div>
+            {handleEmails("TDS", 600)}
+            {displayMessage("TDS")}
           </div>
         )}
       </div>

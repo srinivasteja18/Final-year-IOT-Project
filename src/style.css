@@ -51,6 +51,18 @@ h1{
     text-align: center;
 }
 
+.text-value-good{
+    color:#47f183
+}
+.text-value-bad{
+    color: rgb(227, 227, 129)
+}
+.text-status-bad{
+    color: rgb(231, 43, 43)
+}
+.text-status-good{
+    color:#22CB5C
+}
 @media (max-width: 600px) {
     .container{
         flex-direction: column;
