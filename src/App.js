@@ -159,10 +159,10 @@ function App() {
           ) : (
             <></>
           )}
-          <p className="text-value-good">Acceptable Range: less than 500 ppm</p>
-          <p className="text-value-bad">Threshold value : 700 ppm</p>
+          <p className="text-value-good">Acceptable Range: less than 15 ppm</p>
+          <p className="text-value-bad">Threshold value : 20 ppm</p>
           {data.length &&
-            (data[0].field3 > 500 ? (
+            (data[0].field3 > 20 ? (
               <p className="text-value">
                 {" "}
                 Status: <span className="text-status-bad">Bad</span>
@@ -215,9 +215,9 @@ function App() {
             {displayMessage("H2")}
           </div>
         )}
-        {data.length && data[0].field3 > 700 && (
+        {data.length && data[0].field3 > 20 && (
           <div>
-            {handleEmails("LPG Gas", 700)}
+            {handleEmails("LPG Gas", 20)}
             {displayMessage("LPG Gas")}
           </div>
         )}
